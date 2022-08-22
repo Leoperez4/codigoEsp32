@@ -127,13 +127,31 @@ ledi=pin(14,pin.OUT)
 
 listaObjetos = [leda,ledb,ledc,ledd,lede,ledf,ledg,ledh,ledi]
 
+#Creamis una funcion hacia la derecha
+def derecha():
+    for elemento in listaObjetos:
+        
+        elemento.value(1)
+        pausams(50)
+        elemento.value(0)
+        pausams(50)
+        
+#Creamos una funcion hacia la izquierda
+def izquierda():
+        for elemento in reversed (listaObjetos):
+            
+            elemento.value(1)
+            pausams (50)
+            elemento.value(0)
+            pausams(50)
+
 while True:
-    for i in listaObjetos:
-        i.value(not i.value())
-        pausams(130)
+    derecha()
+    izquierda()
 
 
-
+    
+    
 #METODO 4
 
 from machine import Pin as pin
@@ -152,29 +170,32 @@ print (todos)
 #Creamos una funcion para hacer que las luces enciendan hacia la derecha
 def secuenciaDerecha():
     for i in todos:
-        i.value(not i.value()) #Ponemos el not, para que empiece con un 1, es decir encendiendose, ya que por defecto el valor que iria en el vañlue es "0", y el "not", lo invierte, volviendolo en 1. 
-        pausams(130)
+        for j in range(2):
+            i.value(not i.value()) #Ponemos el not, para que empiece con un 1, es decir encendiendose, ya que por defecto el valor que iria en el vañlue es "0", y el "not", lo invierte, volviendolo en 1. 
+            pausams(130)
 
 #Creamos una funcion para hacer que las luces enciendan hacia la izquierda
 def secuenciaIzquierda():
     for i in reversed (todos):    #Ponemos "reversed" para que se ejecute la misma instruccion que en "secuenciaDerecha", pero de manera inversa.
-        i.value(not i.value ())
-        pausams(130)
+        for j in range(2):
+            i.value(not i.value ())
+            pausams(130)
 
 #Hacemos un bucle para que se ejecuten las funciones
 while True:
     secuenciaDerecha()
-    secuenciaDerecha()
     secuenciaIzquierda()
-    secuenciaIzquierda()
-    
+ 
+
+
 
 #METODO 5
+
 from machine import Pin as pin
 from utime import sleep as pausa, sleep_ms as pausam, sleep_us
-puertos = [15,4,5,19,21,3,22,13,14]
+puerto=[15,2,4,5,18,21,22,23,25,33]
 todos=[]
-for i in puertos:
+for i in puerto:
     todos.append (pin(i,pin.OUT))
 print (todos)
 def derecha():
